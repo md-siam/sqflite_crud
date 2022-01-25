@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '/db/database_helper.dart';
+import 'package:path_provider/path_provider.dart';
+import '../db/db_helper.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -44,61 +45,62 @@ class _HomePageState extends State<HomePage> {
     }
 
     showModalBottomSheet(
-        context: context,
-        elevation: 10,
-        isScrollControlled: true,
-        builder: (_) => Container(
-              padding: EdgeInsets.only(
-                top: 15,
-                left: 15,
-                right: 15,
-                // this will prevent the soft keyboard from covering the text fields
-                bottom: MediaQuery.of(context).viewInsets.bottom + 120,
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  TextField(
-                    controller: _titleController,
-                    decoration: const InputDecoration(hintText: 'Title'),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  TextField(
-                    controller: _descriptionController,
-                    decoration: const InputDecoration(hintText: 'Description'),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      // Save new journal
-                      if (id == null) {
-                        await _addItem();
-                      }
+      context: context,
+      elevation: 10,
+      isScrollControlled: true,
+      builder: (_) => Container(
+        padding: EdgeInsets.only(
+          top: 15,
+          left: 15,
+          right: 15,
+          // this will prevent the soft keyboard from covering the text fields
+          bottom: MediaQuery.of(context).viewInsets.bottom + 120,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            TextField(
+              controller: _titleController,
+              decoration: const InputDecoration(hintText: 'Title'),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            TextField(
+              controller: _descriptionController,
+              decoration: const InputDecoration(hintText: 'Description'),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                // Save new journal
+                if (id == null) {
+                  await _addItem();
+                }
 
-                      if (id != null) {
-                        await _updateItem(id);
-                      }
+                if (id != null) {
+                  await _updateItem(id);
+                }
 
-                      // Clear the text fields
-                      _titleController.text = '';
-                      _descriptionController.text = '';
+                // Clear the text fields
+                _titleController.text = '';
+                _descriptionController.text = '';
 
-                      // Close the bottom sheet
-                      Navigator.of(context).pop();
-                    },
-                    child: Text(id == null ? 'Create New' : 'Update'),
-                  )
-                ],
-              ),
-            ));
+                // Close the bottom sheet
+                Navigator.of(context).pop();
+              },
+              child: Text(id == null ? 'Create New' : 'Update'),
+            )
+          ],
+        ),
+      ),
+    );
   }
 
-// Insert a new journal to the database
+  // Insert a new journal to the database
   Future<void> _addItem() async {
     await SQLHelper.createItem(
         _titleController.text, _descriptionController.text);
@@ -121,8 +123,16 @@ class _HomePageState extends State<HomePage> {
     _refreshJournals();
   }
 
+  // print the path provided by path_provider.dart package
+  void test() async {
+    final directory = await getApplicationDocumentsDirectory();
+    final path = '${directory.path}/filename.db';
+    print(path);
+  }
+
   @override
   Widget build(BuildContext context) {
+    //test();
     return Scaffold(
       backgroundColor: Colors.deepPurple[100],
       appBar: AppBar(title: const Text('SQFLite CRUD')),
