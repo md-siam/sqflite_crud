@@ -1,12 +1,15 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+
 import '../db/db_helper.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
@@ -127,19 +130,17 @@ class _HomePageState extends State<HomePage> {
   void test() async {
     final directory = await getApplicationDocumentsDirectory();
     final path = '${directory.path}/filename.db';
-    print(path);
+    debugPrint(path);
   }
 
   @override
   Widget build(BuildContext context) {
     //test();
     return Scaffold(
-      backgroundColor: Colors.deepPurple[100],
+      backgroundColor: Colors.teal[100],
       appBar: AppBar(title: const Text('SQFLite CRUD')),
       body: _isLoading
-          ? const Center(
-              child: CircularProgressIndicator(),
-            )
+          ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
               itemCount: _journals.length,
               itemBuilder: (context, index) => Card(

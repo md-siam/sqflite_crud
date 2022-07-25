@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '/views/home_page.dart';
 
 void main() => runApp(const MyApp());
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'SQFLite',
-      theme: ThemeData(primarySwatch: Colors.deepPurple),
+      theme: ThemeData(primarySwatch: Colors.teal),
       home: const HomePage(),
     );
   }
