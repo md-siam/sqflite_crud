@@ -7,7 +7,7 @@
 # SQFLite CRUD - [KindaCode](https://www.kindacode.com/article/flutter-sqlite/)
 
 <img align="right" src="screenshots/appicons/playstore.png" height="200"></img>
-Introduction to SQFLite: This repo will teach you how to use [sqflite](https://pub.dev/packages/sqflite) package for storing data locally in your device. Another package called [path_provider](https://pub.dev/packages/path_provider), which is necessary for specifying the storage directory to the sqflite package.<br>
+Introduction to SQFLite: This repo will teach you how to use [sqflite](https://pub.dev/packages/sqflite) package for storing data locally in your device. In addition to that, there is another package called [path_provider](https://pub.dev/packages/path_provider), which is necessary for providing the storage directory or location to the sqflite package.<br>
 
 SQFLite only supports the following platforms:
 
