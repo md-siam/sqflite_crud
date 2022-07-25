@@ -8,7 +8,7 @@
 
 <img align="right" src="screenshots/appicons/playstore.png" height="200"></img>
 Introduction to SQFLite: This repo will teach you how to use [SQFLite](https://pub.dev/packages/sqflite) package in flutter for storing local data.<br>
-SQFLite supports the following platforms:
+SQFLite only supports the following platforms:
 
 ```
     1. ANDROID

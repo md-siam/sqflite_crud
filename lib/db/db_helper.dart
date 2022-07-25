@@ -32,10 +32,10 @@ class SQLHelper {
   }
 
   // Create new item (journal)
-  static Future<int> createItem(String title, String? descrption) async {
+  static Future<int> createItem(String title, String? description) async {
     final db = await SQLHelper.db();
 
-    final data = {'title': title, 'description': descrption};
+    final data = {'title': title, 'description': description};
     final id = await db.insert('items', data,
         conflictAlgorithm: sql.ConflictAlgorithm.replace);
     return id;
@@ -56,12 +56,12 @@ class SQLHelper {
 
   // Update an item by id
   static Future<int> updateItem(
-      int id, String title, String? descrption) async {
+      int id, String title, String? description) async {
     final db = await SQLHelper.db();
 
     final data = {
       'title': title,
-      'description': descrption,
+      'description': description,
       'createdAt': DateTime.now().toString()
     };
 
