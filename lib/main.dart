@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'SQFLite',
+      title: 'SQFLite CRUD Operation',
       theme: ThemeData(primarySwatch: Colors.teal),
       home: const HomePage(),
     );
